@@ -16,18 +16,24 @@ public class ToTextPlugin
         final ToTextPlugin plugin = new ToTextPlugin();
         final ListSelection listSelection = (ListSelection) args[0];
 
-        JMenuItem button = new JMenuItem("To Text File...");
-        button.addActionListener(new ActionListener()
+        JMenuItem menu = new JMenuItem("To Text...");
+
+        menu.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
                 plugin.process(listSelection);
             }
         });
-        listSelection.getToolBar().add(button);
+
+         listSelection.getToolBar().add(menu);
+         //listSelection.addToolBarButton(button);
+        //listSelection.registerPlugin(ListSelection.TOOLS, menu);
+        //listSelection.registerExportPlugin(menu);
+        //listSelection.registerImportPlugin(null,menu,null);
     }
 
-    protected void process(ListSelection listSelection)
+    private void process(ListSelection listSelection)
     {
         //  Reads data from DSS and returns it in data containers in a list of lists
         List[] dataList = listSelection.getSelectedDataContainers();
@@ -49,7 +55,7 @@ public class ToTextPlugin
     }
 
 
-    protected boolean processData(ListSelection listSelection,
+    private boolean processData(ListSelection listSelection,
                                   List tsContainers) {
         try {
             //  Get the name of the text file to write to.
@@ -87,7 +93,7 @@ public class ToTextPlugin
         }
     }
 
-    protected void writeSingleSets(PrintWriter textOut, List tsContainers) {
+    private void writeSingleSets(PrintWriter textOut, List tsContainers) {
         HecTime time = new HecTime();
         for (int i = 0; i < tsContainers.size(); i++) {
             TimeSeriesContainer tsc = (TimeSeriesContainer) tsContainers.get(i);
@@ -103,7 +109,7 @@ public class ToTextPlugin
         }
     }
 
-    protected void writeTableFormat(PrintWriter textOut, List tsContainers) {
+    private void writeTableFormat(PrintWriter textOut, List tsContainers) {
         Table dataTable = new Table(null);
         dataTable.setData(tsContainers, false, 0);
         // UndefinedStyle: 0 = ""; 1 = -901.0; 2 = "M"; 3 = "-M-"
