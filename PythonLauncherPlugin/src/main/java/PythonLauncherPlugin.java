@@ -27,10 +27,6 @@ public class PythonLauncherPlugin
         });
 
          listSelection.getToolBar().add(menu);
-         //listSelection.addToolBarButton(button);
-        //listSelection.registerPlugin(ListSelection.TOOLS, menu);
-        //listSelection.registerExportPlugin(menu);
-        //listSelection.registerImportPlugin(null,menu,null);
     }
 
     private void process(ListSelection listSelection)
@@ -58,33 +54,15 @@ public class PythonLauncherPlugin
     private boolean processData(ListSelection listSelection,
                                   List tsContainers) {
         try {
-            //  Get the name of the text file to write to.
-            JFileChooser chooser = new JFileChooser();
-            chooser.setAcceptAllFileFilterUsed(false);
-            chooser.setDialogTitle("Enter file to save data to");
-            chooser.setFileFilter(new rma.util.RMAFilenameFilter("txt", "*.txt"));
-            chooser.showOpenDialog(listSelection);
-            java.io.File file = chooser.getSelectedFile();
-            if (file == null)
-                return false;
-            String fileName = file.getAbsolutePath();
-            if (fileName.endsWith(".txt") == false)
-                fileName = fileName + ".txt";
-            PrintWriter textOut = new PrintWriter(new FileWriter(fileName));
-            //  Write either as either data in a single column or data sets
-            //  in multi-column.  The table software organizes data sets with times.
-            boolean tableStyle = true;
-            if (tableStyle) {
-                writeTableFormat(textOut, tsContainers);
-            }
-            else {
-                writeSingleSets(textOut, tsContainers);
-            }
-            textOut.close();
-            JOptionPane.showMessageDialog(listSelection,
-                    tsContainers.size() + " data sets written to " + fileName,
-                    "Write Successful", JOptionPane.INFORMATION_MESSAGE);
-            return true;
+            // launch python with hardcoded script
+            String command = "python script.py";
+
+            Runtime run  = Runtime.getRuntime();
+            System.out.println(command);
+            Process proc = run.exec(command);
+            proc.waitFor();
+            System.out.println(proc.exitValue());
+
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(listSelection, e.toString(),
@@ -93,39 +71,4 @@ public class PythonLauncherPlugin
         }
     }
 
-    private void writeSingleSets(PrintWriter textOut, List tsContainers) {
-        HecTime time = new HecTime();
-        for (int i = 0; i < tsContainers.size(); i++) {
-            TimeSeriesContainer tsc = (TimeSeriesContainer) tsContainers.get(i);
-            textOut.println(tsc.fullName);
-            //  HecDouble will take care of missing data and the precision
-            HecDoubleArray values = new HecDoubleArray();
-            values.set(tsc.values);
-            values.setPrecision(tsc.precision);
-            for (int j = 0; j < tsc.numberValues; j++) {
-                time.set(tsc.times[j]);
-                textOut.println(time.toString(4) + ";  " + values.element(j));
-            }
-        }
-    }
-
-    private void writeTableFormat(PrintWriter textOut, List tsContainers) {
-        Table dataTable = new Table(null);
-        dataTable.setData(tsContainers, false, 0);
-        // UndefinedStyle: 0 = ""; 1 = -901.0; 2 = "M"; 3 = "-M-"
-        dataTable.setUndefinedStyle(2);
-        //  See HecTime (or heclib juldat) for date styles
-        dataTable.setDateStyle(4);
-        int numberColumns = dataTable.getColumnCount();
-        int numberRows = dataTable.getRowCount();
-        int startingRow = dataTable.getNumberHeaderRows();  //  Set to 0 if you want headers also
-        for (int i=startingRow; i<numberRows; i++) {
-            StringBuffer sb = new StringBuffer();
-            for (int j=0; j<numberColumns; j++) {
-                sb.append((dataTable.getValueAt(i, j)).toString());
-                sb.append("   ");
-            }
-            textOut.println(sb.toString());
-        }
-    }
 }
