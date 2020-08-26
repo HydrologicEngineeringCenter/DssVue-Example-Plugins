@@ -55,7 +55,7 @@ public class PythonLauncherPlugin
                                   List tsContainers) {
         try {
             // launch python with hardcoded script
-            String command = "python script.py";
+            String command = "C:/project/DssVue-Example-Plugins/PythonLauncherPlugin/py/run-python.bat";
 
             Runtime run  = Runtime.getRuntime();
             System.out.println(command);
@@ -69,6 +69,7 @@ public class PythonLauncherPlugin
                     "Cannot write to file", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        return true;
     }
 
 }
