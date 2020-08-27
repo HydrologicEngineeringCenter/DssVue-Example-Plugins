@@ -91,7 +91,7 @@ public class DSSExcel
             String executable = "C:\\Programs\\HEC-DSSVue-v3.0.1.125\\dotnet\\DSSExcel\\DSSExcelCLI.exe";
             String cOption = "export";
             String dOption = listSelection.getDSSFilename();
-            String eOption = fileChooser.getName();
+            String eOption = fileChooser.getSelectedFile().getAbsolutePath();
             List<String> s = new ArrayList<>();
             for (int i = 0; i < v.size(); i++)
                 s.add("Export" + i);
@@ -100,6 +100,7 @@ public class DSSExcel
             for (int i = 0; i < v.size(); i++)
                 p.add(v.elementAt(i).toString());
             String pOptions = String.join(",", p);
+            pOptions = "\"" + pOptions + "\"";
             String command = String.join(" ",
                     executable,
                     "-c " + cOption,
@@ -108,6 +109,7 @@ public class DSSExcel
                     "-s " + sOptions,
                     "-p " + pOptions);
             Runtime run  = Runtime.getRuntime();
+            System.out.println(command);
             Process proc = run.exec(command);
             proc.waitFor();
             System.out.println(proc.exitValue());
