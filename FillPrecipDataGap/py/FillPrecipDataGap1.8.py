@@ -1,6 +1,6 @@
 # This is only a temporary fix.  Need something better.
 import sys
-sys.path.append("C:\Projects\DssVue-Example-Plugins\PythonLauncherPlugin\py")
+sys.path.append("C:\Projects\DssVue-Example-Plugins\FillPrecipDataGap\py")
 
 import matplotlib.pyplot as plt
 from matplotlib.image import imsave
