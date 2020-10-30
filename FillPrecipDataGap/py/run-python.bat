@@ -1,1 +1,2 @@
-"C:\Programs\WPy64-3771\WinPython Interpreter.exe" c:\project\DssVue-Example-Plugins\PythonLauncherPlugin\py\dssToCsv.py
+"C:\APP\Winpython64-3.7.7.1\WPy64-3771\WinPython Interpreter.exe" ^
+"C:\Projects\DssVue-Example-Plugins\FillPrecipDataGap\py\FillPrecipDataGap1.8.py"
