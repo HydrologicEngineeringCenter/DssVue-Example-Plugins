@@ -8,11 +8,14 @@ pip install https://github.com/gyanz/pydsstools/zipball/master
 pip install plotly
 pip install psutil
 pip install requests
+-- oraca is for some graphics if needed for your project ---
 download orca from: https://github.com/plotly/orca/releases  
    grab get windows-release.zip
+   unzip two layers deep (not using installer)
+   unzip app-64.7z
+   put orace.exe in path (example C:\Programs\orca\app-64)
 
-unzip two layers deep (not using installer)
-put orace.exe in path (example C:\Programs\orca\app-64)
+
 
 
 :: run simple test program.
