@@ -1,1 +1,0 @@
-"C:\Programs\WPy64-3771\WinPython Interpreter.exe" c:\project\DssVue-Example-Plugins\PythonLauncherPlugin\py\dssToCsv.py
