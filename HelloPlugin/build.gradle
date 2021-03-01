@@ -27,8 +27,10 @@ repositories {
 dependencies {
 
 implementation 'mil.army.usace.hec:hec-dssvue:3.0.1-SNAPSHOT'
-implementation 'mil.army.usace.hec:hec:6.0-SNAPSHOT'
-implementation 'mil.army.usace.hec:hec-lib:6.0-SNAPSHOT'
+implementation 'mil.army.usace.hec:hec:6.0-20201030.184715-1'
+//implementation 'mil.army.usace.hec:hec:6.0-SNAPSHOT'
+//implementation 'mil.army.usace.hec:hec-lib:6.0-SNAPSHOT'
+implementation 'mil.army.usace.hec:hec-lib:6.0-20201202.170553-1'
 implementation 'mil.army.usace.hec:hec-data:6.0-SNAPSHOT'
  //   compile fileTree(dir: 'C:/Programs/CWMS-v3.2.1.256/common/jar', include: ['*.jar'])
 
