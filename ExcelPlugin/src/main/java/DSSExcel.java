@@ -85,14 +85,8 @@ public class DSSExcel
 
             // Create command line argument string for DSSExcel
             String executable = System.getProperty("user.dir") + "DSSExcelImport.exe";
-            String cOption = "import";
             String dOption = listSelection.getDSSFilename();
-            String eOption = fileChooser.getSelectedFile().getAbsolutePath();
-            String command = String.join(" ",
-                    executable,
-                    "-c " + cOption,
-                    "-d " + dOption,
-                    "-e " + eOption);
+            String command = String.join(" ",executable, dOption);
 
             Runtime run  = Runtime.getRuntime();
             System.out.println(command);
