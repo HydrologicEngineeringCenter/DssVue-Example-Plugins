@@ -84,7 +84,7 @@ public class DSSExcel
                 return;
 
             // Create command line argument string for DSSExcel
-            String executable = System.getProperty("user.dir") + "DSSExcelCLI.exe";
+            String executable = System.getProperty("user.dir") + "DSSExcelImport.exe";
             String cOption = "import";
             String dOption = listSelection.getDSSFilename();
             String eOption = fileChooser.getSelectedFile().getAbsolutePath();
@@ -160,7 +160,7 @@ public class DSSExcel
 
             // Create command line argument string for DSSExcel
             DataReferenceSet v = listSelection.getSelectedPathnames();
-            String executable = System.getProperty("user.dir") + "DSSExcelCLI.exe";
+            String executable = System.getProperty("user.dir") + "DSSExcelExport.exe";
             String cOption = "export";
             String dOption = listSelection.getDSSFilename();
             String eOption = fileChooser.getSelectedFile().getAbsolutePath();
