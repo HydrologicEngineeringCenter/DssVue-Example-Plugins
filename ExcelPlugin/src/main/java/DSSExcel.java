@@ -70,7 +70,7 @@ public class DSSExcel
         try
         {
             // Set new current working directory
-            String DSSExcelDir = oldDir + "\\dotnet\\DSSExcelCLI\\";
+            String DSSExcelDir = oldDir + "\\dotnet\\DSSExcelImport\\";
             System.setProperty("user.dir", DSSExcelDir);
 
             // Get Excel file
@@ -84,15 +84,9 @@ public class DSSExcel
                 return;
 
             // Create command line argument string for DSSExcel
-            String executable = System.getProperty("user.dir") + "DSSExcelCLI.exe";
-            String cOption = "import";
+            String executable = System.getProperty("user.dir") + "DSSExcelImport.exe";
             String dOption = listSelection.getDSSFilename();
-            String eOption = fileChooser.getSelectedFile().getAbsolutePath();
-            String command = String.join(" ",
-                    executable,
-                    "-c " + cOption,
-                    "-d " + dOption,
-                    "-e " + eOption);
+            String command = String.join(" ",executable, dOption);
 
             Runtime run  = Runtime.getRuntime();
             System.out.println(command);
@@ -145,7 +139,7 @@ public class DSSExcel
             }
 
             // Set new current working directory
-            String DSSExcelDir = oldDir + "\\dotnet\\DSSExcelCLI\\";
+            String DSSExcelDir = oldDir + "\\dotnet\\DSSExcelExport\\";
             System.setProperty("user.dir", DSSExcelDir);
 
             // Get Excel file
@@ -160,8 +154,7 @@ public class DSSExcel
 
             // Create command line argument string for DSSExcel
             DataReferenceSet v = listSelection.getSelectedPathnames();
-            String executable = System.getProperty("user.dir") + "DSSExcelCLI.exe";
-            String cOption = "export";
+            String executable = System.getProperty("user.dir") + "DSSExcelExport.exe";
             String dOption = listSelection.getDSSFilename();
             String eOption = fileChooser.getSelectedFile().getAbsolutePath();
             List<String> p = new ArrayList<>();
@@ -175,7 +168,6 @@ public class DSSExcel
             pOptions = "\"" + pOptions + "\"";
             String command = String.join(" ",
                     executable,
-                    "-c " + cOption,
                     "-d " + dOption,
                     "-e " + eOption,
                     "-p " + pOptions);
@@ -198,33 +190,6 @@ public class DSSExcel
             System.setProperty("user.dir", oldDir);
             e.printStackTrace();
         }
-    }
-    
-    private String getAlphaNumericString(int n)
-    {
-
-        // chose a Character random from this String 
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
-
-        // create StringBuffer size of AlphaNumericString 
-        StringBuilder sb = new StringBuilder(n);
-
-        for (int i = 0; i < n; i++) {
-
-            // generate a random number between 
-            // 0 to AlphaNumericString variable length 
-            int index
-                    = (int)(AlphaNumericString.length()
-                    * Math.random());
-
-            // add Character one by one in end of sb 
-            sb.append(AlphaNumericString
-                    .charAt(index));
-        }
-
-        return sb.toString();
     }
 
 
