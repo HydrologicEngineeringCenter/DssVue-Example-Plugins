@@ -149,7 +149,7 @@ public class DSSExcel
                     "Excel Files", "xls", "xlsx");
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.setFileFilter(filter);
-            int result = fileChooser.showOpenDialog(null);
+            int result = fileChooser.showSaveDialog(null);
             if (result != JFileChooser.APPROVE_OPTION)
                 return;
 
