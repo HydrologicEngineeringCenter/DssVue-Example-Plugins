@@ -175,6 +175,19 @@ public class DSSExcel
             Runtime run  = Runtime.getRuntime();
             System.out.println(command);
             Process proc = run.exec(command);
+
+            // setting up proper error stream for import process
+            StreamGobbler errorGobbler = new
+                    StreamGobbler(proc.getErrorStream(), "ERROR");
+
+            // setting up proper output stream for import process
+            StreamGobbler outputGobbler = new
+                    StreamGobbler(proc.getInputStream(), "OUTPUT");
+
+            // start streams
+            errorGobbler.start();
+            outputGobbler.start();
+
             proc.waitFor();
 
             // change current directory to old directory
