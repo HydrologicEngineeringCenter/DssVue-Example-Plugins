@@ -149,6 +149,7 @@ public class DSSExcel
                     "Excel Files", "xls", "xlsx");
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.setFileFilter(filter);
+            fileChooser.setDialogTitle("Open or Create Excel File");
             int result = fileChooser.showSaveDialog(null);
             if (result != JFileChooser.APPROVE_OPTION)
                 return;
